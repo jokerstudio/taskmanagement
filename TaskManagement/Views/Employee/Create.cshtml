@@ -1,0 +1,97 @@
+﻿@model TaskManagement.Models.Personel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<script>
+    var i = 0;
+    $(document).ready(function () {
+        CheckManager();
+    });
+    function CheckManager() {
+        if (document.getElementById("PositionID").value == "3") {
+            $(".Username").show();
+            $(".Password").show();
+        } else {
+            $(".Username").hide();
+            $(".Password").hide();
+        }
+
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PositionID, "Position")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("PositionID", null, new { @onchange = "CheckManager();" })
+        @Html.ValidationMessageFor(model => model.PositionID)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Birthday)
+    </div>
+    <div class="editor-field">
+        @(Html.Kendo().DatePicker()
+              .Name("BirthDay")
+              .HtmlAttributes(new { style = "width:220px" }))
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address)
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Phone)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Phone)
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IDCard)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IDCard)
+        @Html.ValidationMessageFor(model => model.IDCard)
+    </div>
+    <div class="Username">
+        @Html.LabelFor(model => model.Username)
+    
+        @Html.EditorFor(model => model.Username)
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+    <div class="Password">
+        @Html.LabelFor(model => model.Password)
+   
+        @Html.EditorFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+        
+        
+
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

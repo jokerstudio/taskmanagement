@@ -1,0 +1,80 @@
+﻿@model TaskManagement.Models.ModelRepository
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend></legend>
+
+            @Html.HiddenFor(model => model.Task.TaskID)
+            @Html.HiddenFor(model => model.Project.ProjectID)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Task.TaskName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Task.TaskName)
+                @Html.ValidationMessageFor(model => model.Task.TaskName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Task.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Task.Description)
+                @Html.ValidationMessageFor(model => model.Task.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Task.PersonelID, "Personel")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("PersonelID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Task.PersonelID)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Task.Priority)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Task.Priority)
+                @Html.ValidationMessageFor(model => model.Task.Priority)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Task.Status)
+                @Html.DropDownList("Status", String.Empty)
+            </div>
+           
+            <br />
+            Working Day
+            <br />
+            @{int i = 0;}
+            @foreach (var date in Model.Task.WorkDays)
+            {
+                <div id="datetime">
+                    <input data-val="true" id="@i" name="date[]" style="width: 220px" value="@date.Date.ToString()"/>
+                    <a href="#" onclick="removeid('datetime');" class="btn btn-mini"><i class="icon-remove"></i></a>
+                </div>
+                <script>jQuery(function () { $("#@i").kendoDatePicker() })</script>
+                i++;
+            }
+            <p id="addcalendar"><a href="#submit" onclick="return Createinput();" class="btn btn-info">Add Date</a></p>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { id = Model.Project.ProjectID })
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

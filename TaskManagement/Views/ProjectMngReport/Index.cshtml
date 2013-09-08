@@ -1,0 +1,21 @@
+﻿@model TaskManagement.Models.ModelRepository
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+<ul class='main-list well' style="background: #eee;">
+    @foreach (var item in Model.PersonelList)
+    {
+        var result = 0;
+        var successcount = item.Tasks.Where(it => it.Status == "Success").Count();
+        if (item.Tasks.Count() == 0)
+        {
+            result = 100;
+        }
+        else { result = (successcount * 100) / item.Tasks.Count(); }
+        <div>@item.Name</div>
+        <div class="progress progress-info  progress-striped active">
+            <div class="bar" style="width: @result%"><b>@result%</b></div>
+        </div>
+    }
+</ul>

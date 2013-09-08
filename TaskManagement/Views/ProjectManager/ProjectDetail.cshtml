@@ -1,0 +1,56 @@
+﻿@model TaskManagement.Models.ModelRepository
+@{
+    ViewBag.Title = "ProjectDetail";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+<h3>Detail</h3>
+<ul class='main-list well'>
+    <div>
+        <div>Name : @Model.Project.Name</div>
+        <div>Category : @Model.Project.ProjectCategory.CategoryName</div>
+        <div>Project Manager : @Model.PersonelList.First(it => it.PersonnelID == Model.Project.ProjectManagerID).Name</div>
+    </div>
+
+</ul>
+<div>
+    <h3>My Team</h3>
+</div>
+<ul class='main-list well'>
+    <div>
+        <a data-toggle="modal" href="#myModal" class='btn btn-small btn-primary pull-right'><i class='icon-plus icon-white'></i>Add Team</a>
+        <!-- sample modal content -->
+
+    </div>
+    <br>
+    <br>
+    @foreach (var item in Model.Project.Personels.ToList())
+    {
+        <li class='row'>
+            <div class='span6'>@item.Name</div>
+            <div class='pull-right'>
+                <a href="@Url.Action("DeleteConfirmed", new { personelid = @item.PersonnelID, projectid = Model.Project.ProjectID })" class="btn btn-danger btn-mini"  onclick="return DeleteConfirm();"><i class='icon-remove'></i></a>
+            </div>
+        </li>
+    }
+</ul>
+<center><a href="@Url.Action("Index","Task", new { id = Model.Project.ProjectID })" class="btn btn-success btn-large" >View Task</a></center>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="myModalLabel">Employee List</h3>
+    </div>
+    @using (Html.BeginForm("Addtoteam", "ProjectManager", FormMethod.Post))
+    {
+        <div class="modal-body">
+            @Html.HiddenFor(model => model.Project.ProjectID)
+
+            @Html.DropDownList("PersonnelID", String.Empty)
+            
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Add" />
+        </div>
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TaskManagement.Models.Personel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<a href="@Url.Action("Create")" class='btn btn-primary pull-right'><i class='icon-plus icon-white'></i>Create New</a>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position.PositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.PositionName)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            
+            <td>
+                <div class='pull-right'>
+                    <a href="@Url.Action("Edit", new { id = item.PersonnelID })" class="btn btn-mini"><i class='icon-edit'></i></a>
+                    <a href="@Url.Action("DeleteConfirmed", new { id = item.PersonnelID })" class="btn btn-danger btn-mini"  onclick="return DeleteConfirm();"><i class='icon-trash'></i></a>
+                </div>
+            </td>
+        </tr>
+         
+    }
+</table>
+

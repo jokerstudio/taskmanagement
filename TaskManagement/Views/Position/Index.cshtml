@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TaskManagement.Models.Position>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<a href="@Url.Action("Create")" class='btn btn-primary pull-right'><i class='icon-plus icon-white'></i>New Position</a>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <div class='pull-right'>
+                    <a href="@Url.Action("Edit", new { id = item.PositionID })" class="btn btn-mini"><i class='icon-edit'></i></a>
+                    <a href="@Url.Action("DeleteConfirmed", new { id = item.PositionID })" class="btn btn-danger btn-mini"  onclick="return DeleteConfirm();"><i class='icon-trash'></i></a>
+                </div>
+        </td>
+    </tr>
+}
+
+</table>
