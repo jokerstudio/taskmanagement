@@ -1,0 +1,64 @@
+﻿@model TaskManagement.Models.ModelRepository
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+
+
+<p>
+    <a href="@Url.Action("Create", new { id = Model.Project.ProjectID })" class='btn btn-primary pull-right'><i class='icon-plus icon-white'></i>New Task</a>
+</p>
+<h3>[ @Model.Project.Name ]</h3>
+<ul class='main-list well'>
+    <li class='row' style="background: #eee;">
+        <div class='span10'>
+            <p class="span5" style="margin-left: -20px"><b>Taskname</b></p>
+
+            <p class="span3"><b>Owner</b></p>
+
+            <p class="span1" style="margin-left: -20px"><b>Priority</b></p>
+
+            <p class="span1"><b>Status</b></p>
+            <p><b>Time</b></p>
+        </div>
+    </li>
+    @foreach (var item in Model.TaskList)
+    {
+        <div>
+            <a href="@Url.Action("Edit", new { taskid = item.TaskID, projectid = Model.Project.ProjectID })">
+                <li class='row'>
+                    <div class='span10'>
+                        <p class="span5" style="margin-left: -20px">@Html.DisplayFor(modelItem => item.TaskName)</p>
+
+                        <p class="span3">@Html.DisplayFor(modelItem => item.Personel.Name)</p>
+
+                        <p class="span1" style="padding-left: 10px; margin-left: -20px">@Html.DisplayFor(modelItem => item.Priority)</p>
+
+                        @if (item.Status == "Running")
+                        {
+                            <p class="span1"><span class="label label-important" style="margin-left: -20px">@Html.DisplayFor(modelItem => item.Status)</span></p>
+                        }
+                        else if (item.Status == "Success")
+                        { <p class="span1"><span class="label label-success" style="margin-left: -20px">@Html.DisplayFor(modelItem => item.Status)</span></p>}
+                        else
+                        {<p class="span1"><span class="label label-warning" style="margin-left: -20px">@Html.DisplayFor(modelItem => item.Status)</span></p>}
+
+                        <p>
+                            <a href="#" class="btn btn-mini" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="@foreach (var wd in Model.WorkDayList.Where(it => it.TaskID == item.TaskID))
+                                                                                                                                           {
+                                                                                                                                           @String.Format("({0}/{1}/{2}) ", wd.Date.Value.Day.ToString(), wd.Date.Value.Month.ToString(), wd.Date.Value.Year.ToString());
+                                                                                                                                           }" title="วันที่ปฏิบัติงาน" ><i class="icon-time"></i></a>
+                        </p>
+                    </div>
+
+                    <div class='pull-right'>
+                        <a href="@Url.Action("DeleteConfirmed", new { id = item.TaskID, projectid = item.Project.ProjectID })" class="btn btn-danger btn-mini"  onclick="return DeleteConfirm();"><i class='icon-trash'></i></a>
+                    </div>
+
+                </li>
+
+            </a>
+        </div>
+    }
+</ul>

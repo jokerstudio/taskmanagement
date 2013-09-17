@@ -1,0 +1,59 @@
+﻿@model TaskManagement.Models.ModelRepository
+
+@{
+    ViewBag.Title = "AdminManagement";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<a href="@Url.Action("Create")" class='btn btn-primary pull-right'><i class='icon-plus icon-white'></i>New Project</a>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Name)
+        </th>
+        <th>
+            ProjectManager
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectCategory.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.DateofCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ProjectsList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.PersonelList.First(it => it.PersonnelID == item.ProjectManagerID).Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCategory.CategoryName)
+            </td>
+            <td>
+                 @String.Format("{0:dd/MM/yyyy}", item.DateofCreate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <div class='pull-right'>
+                    <a href="@Url.Action("Details", new { id = item.ProjectID })" class="btn btn-mini"><i class='icon-zoom-in'></i></a>
+                    <a href="@Url.Action("Edit", new { id = item.ProjectID })" class="btn btn-mini"><i class='icon-edit'></i></a>
+                    <a href="@Url.Action("DeleteConfirmed", new { id = item.ProjectID })" class="btn btn-danger btn-mini"  onclick="return DeleteConfirm();"><i class='icon-trash'></i></a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+ 

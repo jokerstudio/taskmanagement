@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement", "TaskManag
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TaskmanagementDB", "TaskmanagementDB\TaskmanagementDB.sqlproj", "{F3D27A8E-FD17-4877-B683-CDF93AA0D65A}"
 EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "DemoCloudService", "DemoCloudService\DemoCloudService.ccproj", "{4F4CC5C2-88E7-4E56-B632-7632D8B4DC67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F3D27A8E-FD17-4877-B683-CDF93AA0D65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D27A8E-FD17-4877-B683-CDF93AA0D65A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3D27A8E-FD17-4877-B683-CDF93AA0D65A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4F4CC5C2-88E7-4E56-B632-7632D8B4DC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4CC5C2-88E7-4E56-B632-7632D8B4DC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4CC5C2-88E7-4E56-B632-7632D8B4DC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4CC5C2-88E7-4E56-B632-7632D8B4DC67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

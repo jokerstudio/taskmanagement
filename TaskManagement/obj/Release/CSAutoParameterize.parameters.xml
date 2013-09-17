@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\aspnet-TaskManagement-20130224111259.mdf;Initial Catalog=aspnet-TaskManagement-20130224111259;Integrated Security=True;User Instance=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="TaskManagementEntities-Web.config Connection String" description="TaskManagementEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Taskmanagement.csdl|res://*/Models.Taskmanagement.ssdl|res://*/Models.Taskmanagement.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=dippt0tufu.database.windows.net;initial catalog=TaskmanagementDB;user id=jokerstudio;password=Jk065807588;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskManagementEntities']/@connectionString" />
+  </parameter>
+</parameters>

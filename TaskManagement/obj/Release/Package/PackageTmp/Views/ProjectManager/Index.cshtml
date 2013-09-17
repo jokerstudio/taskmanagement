@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TaskManagement.Models.Project>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+<h3>Project List</h3>
+<ul class='main-list well'>
+    @foreach (var item in Model)
+    {
+        <li class='row'>
+            <div class='span6'><i class='icon-folder-open'></i> @item.Name</div>
+            <div class='pull-right'>
+                <a href="@Url.Action("ProjectDetail", new { id = @item.ProjectID})" class='btn btn-mini'><i class='icon-zoom-in'></i></a>
+            </div>
+        </li>
+    }
+</ul>

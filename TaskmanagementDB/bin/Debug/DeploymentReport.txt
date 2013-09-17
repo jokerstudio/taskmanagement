@@ -1,0 +1,35 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Admins] (Table)
+       [dbo].[Personels] (Table)
+       [dbo].[Personels].[IX_FK_Personel_Position] (Index)
+       [dbo].[Positions] (Table)
+       [dbo].[ProjectCategories] (Table)
+       [dbo].[ProjectPersonel] (Table)
+       [dbo].[ProjectPersonel].[IX_FK_ProjectPersonel_Project] (Index)
+       [dbo].[Projects] (Table)
+       [dbo].[Projects].[IX_FK_Project_ProjectCategory1] (Index)
+       [dbo].[Tasks] (Table)
+       [dbo].[Tasks].[IX_FK_Task_Personel] (Index)
+       [dbo].[Tasks].[IX_FK_Task_Project] (Index)
+       [dbo].[WorkDays] (Table)
+       [dbo].[WorkDays].[IX_FK_WorkDay_Task] (Index)
+       [dbo].[FK_Personel_Position] (Foreign Key)
+       [dbo].[FK_ProjectPersonel_Personel] (Foreign Key)
+       [dbo].[FK_ProjectPersonel_Project] (Foreign Key)
+       [dbo].[FK_Project_ProjectCategory1] (Foreign Key)
+       [dbo].[FK_Task_Personel] (Foreign Key)
+       [dbo].[FK_Task_Project] (Foreign Key)
+       [dbo].[FK_WorkDay_Task] (Foreign Key)
+
+** Supporting actions

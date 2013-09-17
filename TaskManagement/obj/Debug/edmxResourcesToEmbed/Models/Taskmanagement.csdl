@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaskManagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TaskManagementEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="TaskManagementModel.Admin" />
+    <EntitySet Name="Personels" EntityType="TaskManagementModel.Personel" />
+    <EntitySet Name="Positions" EntityType="TaskManagementModel.Position" />
+    <EntitySet Name="ProjectCategories" EntityType="TaskManagementModel.ProjectCategory" />
+    <EntitySet Name="Projects" EntityType="TaskManagementModel.Project" />
+    <EntitySet Name="Tasks" EntityType="TaskManagementModel.Task" />
+    <EntitySet Name="WorkDays" EntityType="TaskManagementModel.WorkDay" />
+    <AssociationSet Name="FK_Personel_Position" Association="TaskManagementModel.FK_Personel_Position">
+      <End EntitySet="Positions" Role="Position" />
+      <End EntitySet="Personels" Role="Personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Personel" Association="TaskManagementModel.FK_Task_Personel">
+      <End EntitySet="Personels" Role="Personel" />
+      <End EntitySet="Tasks" Role="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_ProjectCategory1" Association="TaskManagementModel.FK_Project_ProjectCategory1">
+      <End EntitySet="ProjectCategories" Role="ProjectCategory" />
+      <End EntitySet="Projects" Role="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Project" Association="TaskManagementModel.FK_Task_Project">
+      <End EntitySet="Projects" Role="Project" />
+      <End EntitySet="Tasks" Role="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkDay_Task" Association="TaskManagementModel.FK_WorkDay_Task">
+      <End EntitySet="Tasks" Role="Task" />
+      <End EntitySet="WorkDays" Role="WorkDay" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectPersonel" Association="TaskManagementModel.ProjectPersonel">
+      <End EntitySet="Personels" Role="Personel" />
+      <End EntitySet="Projects" Role="Project" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="PersonnelID" />
+    </Key>
+    <Property Name="PersonnelID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="PositionID" Type="Int32" />
+    <Property Name="Birthday" Precision="3" Type="DateTime" />
+    <Property Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Phone" MaxLength="10" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="IDCard" MaxLength="13" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Username" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Password" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="IsActive" Type="Int32" />
+    <NavigationProperty Name="Position" Relationship="TaskManagementModel.FK_Personel_Position" FromRole="Personel" ToRole="Position" />
+    <NavigationProperty Name="Tasks" Relationship="TaskManagementModel.FK_Task_Personel" FromRole="Personel" ToRole="Task" />
+    <NavigationProperty Name="Projects" Relationship="TaskManagementModel.ProjectPersonel" FromRole="Personel" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="PositionName" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <NavigationProperty Name="Personels" Relationship="TaskManagementModel.FK_Personel_Position" FromRole="Position" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="ProjectCategory">
+    <Key>
+      <PropertyRef Name="ProjectCategoryID" />
+    </Key>
+    <Property Name="ProjectCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="CategoryName" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <NavigationProperty Name="Projects" Relationship="TaskManagementModel.FK_Project_ProjectCategory1" FromRole="ProjectCategory" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="ProjectManagerID" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="DateofCreate" Precision="3" Type="DateTime" />
+    <Property Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="ProjectCategory" Relationship="TaskManagementModel.FK_Project_ProjectCategory1" FromRole="Project" ToRole="ProjectCategory" />
+    <NavigationProperty Name="Tasks" Relationship="TaskManagementModel.FK_Task_Project" FromRole="Project" ToRole="Task" />
+    <NavigationProperty Name="Personels" Relationship="TaskManagementModel.ProjectPersonel" FromRole="Project" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="TaskName" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="PersonelID" Type="Int32" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="Status" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Personel" Relationship="TaskManagementModel.FK_Task_Personel" FromRole="Task" ToRole="Personel" />
+    <NavigationProperty Name="Project" Relationship="TaskManagementModel.FK_Task_Project" FromRole="Task" ToRole="Project" />
+    <NavigationProperty Name="WorkDays" Relationship="TaskManagementModel.FK_WorkDay_Task" FromRole="Task" ToRole="WorkDay" />
+  </EntityType>
+  <EntityType Name="WorkDay">
+    <Key>
+      <PropertyRef Name="WorkDayID" />
+    </Key>
+    <Property Name="WorkDayID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Date" Precision="3" Type="DateTime" />
+    <Property Name="TaskID" Type="Int32" />
+    <Property Name="PersonelID" Type="Int32" />
+    <NavigationProperty Name="Task" Relationship="TaskManagementModel.FK_WorkDay_Task" FromRole="WorkDay" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_Personel_Position">
+    <End Type="TaskManagementModel.Position" Multiplicity="0..1" Role="Position">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TaskManagementModel.Personel" Multiplicity="*" Role="Personel" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Personel">
+    <End Type="TaskManagementModel.Personel" Multiplicity="0..1" Role="Personel">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TaskManagementModel.Task" Multiplicity="*" Role="Task" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="PersonnelID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_ProjectCategory1">
+    <End Type="TaskManagementModel.ProjectCategory" Multiplicity="0..1" Role="ProjectCategory">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TaskManagementModel.Project" Multiplicity="*" Role="Project" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectCategory">
+        <PropertyRef Name="ProjectCategoryID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Project">
+    <End Type="TaskManagementModel.Project" Multiplicity="0..1" Role="Project">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TaskManagementModel.Task" Multiplicity="*" Role="Task" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkDay_Task">
+    <End Type="TaskManagementModel.Task" Multiplicity="0..1" Role="Task">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TaskManagementModel.WorkDay" Multiplicity="*" Role="WorkDay" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="WorkDay">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectPersonel">
+    <End Type="TaskManagementModel.Personel" Multiplicity="*" Role="Personel" />
+    <End Type="TaskManagementModel.Project" Multiplicity="*" Role="Project" />
+  </Association>
+</Schema>

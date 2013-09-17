@@ -1,0 +1,65 @@
+﻿@model TaskManagement.Models.Personel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Personel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PersonnelID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PersonnelID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Position.PositionName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Position.PositionName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Birthday)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDCard)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDCard)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

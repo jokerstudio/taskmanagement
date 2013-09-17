@@ -1,0 +1,9 @@
+C:\taskmanagement\TaskmanagementDB\bin\Debug\TaskmanagementDB.dacpac
+C:\taskmanagement\TaskmanagementDB\bin\Debug\TaskmanagementDB.dll
+C:\taskmanagement\TaskmanagementDB\bin\Debug\TaskmanagementDB.pdb
+C:\taskmanagement\TaskmanagementDB\obj\Debug\TaskmanagementDB.dll
+C:\taskmanagement\TaskmanagementDB\obj\Debug\TaskmanagementDB.pdb
+C:\taskmanagement\TaskmanagementDB\obj\Debug\Model.xml
+C:\taskmanagement\TaskmanagementDB\obj\Debug\refactor.xml
+C:\taskmanagement\TaskmanagementDB\obj\Debug\postdeploy.sql
+C:\taskmanagement\TaskmanagementDB\obj\Debug\predeploy.sql

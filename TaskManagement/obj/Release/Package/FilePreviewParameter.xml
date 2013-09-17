@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="jokerstudio" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\aspnet-TaskManagement-20130224111259.mdf;Initial Catalog=aspnet-TaskManagement-20130224111259;Integrated Security=True;User Instance=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="TaskManagementEntities-Web.config Connection String" description="" value="metadata=res://*/Models.Taskmanagement.csdl|res://*/Models.Taskmanagement.ssdl|res://*/Models.Taskmanagement.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=dippt0tufu.database.windows.net;initial catalog=TaskmanagementDB;user id=jokerstudio;password=Jk065807588;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\taskmanagement\\TaskManagement\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskManagementEntities']/@connectionString" />
+  </parameter>
+</parameters>

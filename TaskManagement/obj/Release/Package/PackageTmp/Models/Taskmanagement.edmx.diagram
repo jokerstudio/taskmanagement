@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="774b96cb02ce43baaed27350811776c3" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="TaskManagementModel.Admin" PointX="5.75" PointY="7.875" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.Personel" PointX="3" PointY="3.875" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.Position" PointX="0.75" PointY="4.75" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.ProjectCategory" PointX="3" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.Project" PointX="5.25" PointY="4.125" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.Task" PointX="7.5" PointY="4.125" Width="1.5" />
+        <EntityTypeShape EntityType="TaskManagementModel.WorkDay" PointX="9.75" PointY="4.625" Width="1.5" />
+        <AssociationConnector Association="TaskManagementModel.FK_Personel_Position" />
+        <AssociationConnector Association="TaskManagementModel.FK_Task_Personel" />
+        <AssociationConnector Association="TaskManagementModel.FK_Project_ProjectCategory1" />
+        <AssociationConnector Association="TaskManagementModel.FK_Task_Project" />
+        <AssociationConnector Association="TaskManagementModel.FK_WorkDay_Task" />
+        <AssociationConnector Association="TaskManagementModel.ProjectPersonel" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

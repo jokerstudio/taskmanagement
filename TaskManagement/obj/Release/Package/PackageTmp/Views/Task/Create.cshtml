@@ -1,0 +1,61 @@
+﻿@model TaskManagement.Models.ModelRepository
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_ProjectManager.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "Task", FormMethod.Post, new { id = "commentForm" }))
+{
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Project.ProjectID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Task.TaskName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Task.TaskName)
+            @Html.ValidationMessageFor(model => model.Task.TaskName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Task.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Task.Description, new { style = "width:500px;height:120px"})
+            @Html.ValidationMessageFor(model => model.Task.Description)
+        </div>
+
+        <div class="editor-label">
+            Owner
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PersonelID", String.Empty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Task.Priority)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Task.Priority, new { max = "5", value = "1"})
+        </div>
+     <p>Working Day</p>
+        <div id="datetime"><input data-val="true" id="first" name="date[]" style="width: 220px" /> <a href="#" onclick="removeid('datetime');" class="btn btn-mini"><i class="icon-remove"></i></a></div>
+
+    <p id="addcalendar"><a href="#submit" onclick="return Createinput();" class="btn btn-info">Add Date</a></p>
+    <br>
+    <br>
+        <p>
+            <input id="submit" type="submit" value="Create" />
+        </p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new {id = Model.Project.ProjectID })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
