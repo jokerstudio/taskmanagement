@@ -337,7 +337,6 @@
     </Content>
     <Content Include="Content\images\KendoUI.ttf" />
     <Content Include="Content\images\KendoUI.woff" />
-    <None Include="Properties\PublishProfiles\test.pubxml" />
     <Content Include="Scripts\bootstrap-application.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -868,6 +867,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
